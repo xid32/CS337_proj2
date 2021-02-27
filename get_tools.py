@@ -76,4 +76,4 @@ st = get_steps(dir)
 x = st.lower()
 
 
-print(get_tools(st))
+TOOLS = get_tools(st)

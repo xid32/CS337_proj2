@@ -17,13 +17,18 @@ def findDirection(s):
     return jsonObj
 
 
+# fetchURL('https://www.allrecipes.com/recipe/278271/air-fryer-stuffed-mushrooms/')
+# f = open("url.txt", "r")
+# s = f.read()
 
-fetchURL('https://www.allrecipes.com/recipe/278271/air-fryer-stuffed-mushrooms/')
-f = open("url.txt", "r")
-s = f.read()
+# print(findDirection(s))
 
-print(findIngredient(s))
-print("\n\n")
-print(json.dumps(findDirection(s), indent=4, sort_keys=True))
-print("\n\n")
+# fetchURL('https://www.allrecipes.com/recipe/278271/air-fryer-stuffed-mushrooms/')
+# f = open("url.txt", "r")
+# s = f.read()
+
+# print(findIngredient(s))
+# print("\n\n")
+# print(json.dumps(findDirection(s), indent=4, sort_keys=True))
+# print("\n\n")
 
