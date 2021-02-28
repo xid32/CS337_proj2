@@ -45,20 +45,22 @@ def get_method():
     print('Other Methods:')
     print(om)
     print()
+    return [pm, om]
 
-# s = 'https://www.allrecipes.com/recipe/21202/ham-and-cheese-breakfast-tortillas/' 
-# fetchURL(s)
-s = 'https://www.allrecipes.com/recipes/16376/healthy-recipes/lunches/'
-a = urllib.request.urlopen(s)
-a = a.readlines()
-urls = []
+def test():
+    # s = 'https://www.allrecipes.com/recipe/21202/ham-and-cheese-breakfast-tortillas/' 
+    # fetchURL(s)
+    s = 'https://www.allrecipes.com/recipes/16376/healthy-recipes/lunches/'
+    a = urllib.request.urlopen(s)
+    a = a.readlines()
+    urls = []
 
-for i in a:
-    if str(i).find('https://www.allrecipes.com/recipe/')>=0:
-        url = str(i)[str(i).find('https://www.allrecipes.com/recipe/'):]
-        urls.append(url[:url.find('"')])
-for i in range(len(urls)):
-    print('Recipe ' + str(i+1) + ':')
-    fetchURL(urls[i])
-    get_method()
+    for i in a:
+        if str(i).find('https://www.allrecipes.com/recipe/')>=0:
+            url = str(i)[str(i).find('https://www.allrecipes.com/recipe/'):]
+            urls.append(url[:url.find('"')])
+    for i in range(len(urls)):
+        print('Recipe ' + str(i+1) + ':')
+        fetchURL(urls[i])
+        get_method()
     

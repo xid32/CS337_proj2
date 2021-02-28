@@ -1,26 +1,38 @@
 from get_tools import TOOLS
 from fetchURL import fetchURL
 from parse import findDirection
+from get_methods import get_method
 import re
 import json
+import urllib.request
 
 
-def get_directions():
-    fetchURL('https://www.allrecipes.com/recipe/270363/guinness-cupcakes-with-espresso-frosting/')
+url = 'https://www.allrecipes.com/recipe/270363/guinness-cupcakes-with-espresso-frosting/'
+def get_directions(url):
+    fetchURL(url)
     f = open("url.txt", "r")
     s = f.read()
     dirs = findDirection(s)["recipeInstructions"]
-
+    methods = get_method()[0] + get_method()[1]
+    print(methods)
     dirs_rep = []
     for dir in dirs:
         text = dir["text"]
         dir_rep = {}
         dir_rep["full_text_direction"] = text
         dir_rep["tools"] = find_tools(text)
+        dir_rep["methods"] = find_methods(text, methods)
         dir_rep["time"] = find_time(text)
         dirs_rep.append(dir_rep)
     return dirs_rep
     
+def find_methods(text, methods):
+    methods_for_this_step = []
+    for method in methods:
+        if method in text:
+            methods_for_this_step.append(method)
+    return methods_for_this_step
+
 
 def find_tools(text):
     tools_for_this_step = []
@@ -34,6 +46,7 @@ def find_tools(text):
 def find_time(text):
 
     # Rules:
+    to_ = re.findall(r"[0-9]+ to [0-9]+ minutes", text)
     hour_minute = re.findall(r"[0-9]+ hour and [0-9]+ minute", text)
     minute_second = re.findall(r"minute and [0-9]+ second", text)
 
@@ -43,7 +56,7 @@ def find_time(text):
     hour = re.findall(r" [0-9]+ hour", text)
 
 
-    rules = [hour_minute, minute_second, second, minute, hour]
+    rules = [to_, hour_minute, minute_second, second, minute, hour]
     time = {}
     for rule in rules:
         for item in rule:
@@ -80,6 +93,27 @@ def is_overlap(start, interval):
         if tup[0] <= start + 1 and start + 1 <= tup[1]: return True
     return False
 
-print(json.dumps(get_directions(), indent=4, sort_keys=True))
-print(find_time("heat for 5 hour and 15 minute, boil for 5 minute, wait 5 minute to cool"))
-print(find_time("5 hour, 5 hour, 5 hour, 5 hour, heat for 5 hour and 15 minute, boil for 5 minute, wait 5 minute to cool"))
+# print(json.dumps(get_directions(url), indent=4, sort_keys=True))
+# print(find_time("heat for 5 hour and 15 minute, boil for 5 minute, wait 5 minute to cool"))
+
+# dir = "5 hour, 5 hour, 5 hour, 5 hour, heat for 5 hour and 15 minute, boil for 5 minute, wait 5 minute to cool"
+# dicti = find_time(dir)
+# for key in dicti:
+#     print(dir[key:key+16])
+
+def test():
+    s = 'https://www.allrecipes.com/recipes/16376/healthy-recipes/lunches/'
+    a = urllib.request.urlopen(s)
+    a = a.readlines()
+    urls = []
+
+    for i in a:
+        if str(i).find('https://www.allrecipes.com/recipe/')>=0:
+            url = str(i)[str(i).find('https://www.allrecipes.com/recipe/'):]
+            urls.append(url[:url.find('"')])
+    for i in range(len(urls)):
+        print('Recipe ' + str(i+1) + ':')
+        print(json.dumps(get_directions(urls[i]), indent=4, sort_keys=True))
+        # fetchURL(urls[i])
+        # get_method()
+test()
