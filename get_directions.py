@@ -18,12 +18,15 @@ def get_directions(url):
     dirs_rep = []
     for dir in dirs:
         text = dir["text"]
-        dir_rep = {}
-        dir_rep["full_text_direction"] = text
-        dir_rep["tools"] = find_tools(text)
-        dir_rep["methods"] = find_methods(text, methods)
-        dir_rep["time"] = find_time(text)
-        dirs_rep.append(dir_rep)
+        sents = text.split(".")
+        for sent in sents:
+            if sent == "\n": continue
+            dir_rep = {}
+            dir_rep["txt"] = sent
+            dir_rep["tools"] = find_tools(sent)
+            dir_rep["methods"] = find_methods(sent, methods)
+            dir_rep["time"] = find_time(sent)
+            dirs_rep.append(dir_rep)
     return dirs_rep
     
 def find_methods(text, methods):
@@ -101,7 +104,7 @@ def is_overlap(start, interval):
 # for key in dicti:
 #     print(dir[key:key+16])
 
-def test():
+def test(nums):
     s = 'https://www.allrecipes.com/recipes/16376/healthy-recipes/lunches/'
     a = urllib.request.urlopen(s)
     a = a.readlines()
@@ -111,9 +114,9 @@ def test():
         if str(i).find('https://www.allrecipes.com/recipe/')>=0:
             url = str(i)[str(i).find('https://www.allrecipes.com/recipe/'):]
             urls.append(url[:url.find('"')])
-    for i in range(len(urls)):
-        print('Recipe ' + str(i+1) + ':')
-        print(json.dumps(get_directions(urls[i]), indent=4, sort_keys=True))
-        # fetchURL(urls[i])
-        # get_method()
-test()
+
+    for num in nums:
+        print(json.dumps(get_directions(urls[num]), indent=4, sort_keys=True))
+
+
+test(list(range(0, 10)))
