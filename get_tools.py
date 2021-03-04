@@ -41,7 +41,13 @@ def get_relist():
     relist = [using_, bring_, preheat_, with_, in_, on_, by_, into_]
     return relist
 
-def get_tools(st):
+def get_tools():
+    # fetchURL('https://www.allrecipes.com/recipe/270363/guinness-cupcakes-with-espresso-frosting/')
+    f = open("url.txt", "r")
+    s = f.read()
+
+    dir = findDirection(s)
+    st = get_steps(dir)
     st = ' ' + st
     stop_words = ['back', 'size', 'water', 'row', 'side', 'mixture', 'heat']
     tools = []
@@ -66,14 +72,4 @@ def get_tools(st):
     return list(set(tools))
 
 
-# fetchURL('https://www.allrecipes.com/recipe/270363/guinness-cupcakes-with-espresso-frosting/')
-f = open("url.txt", "r")
-s = f.read()
-
-dir = findDirection(s)
-st = get_steps(dir)
-#print(st)
-x = st.lower()
-
-
-TOOLS = get_tools(st)
+TOOLS = get_tools()
