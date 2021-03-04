@@ -1,9 +1,4 @@
-from get_directions import get_directions
-from get_ingredients import get_ingredients_withURL
-from get_tools import get_tools
-from get_methods import get_method
 from nltk import word_tokenize
-import urllib.request
 import json
 
 def to_veg():
