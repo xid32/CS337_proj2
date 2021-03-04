@@ -6,39 +6,20 @@ from nltk import word_tokenize
 import urllib.request
 import json
 
-
-# def test(nums):
-#     s = 'https://www.allrecipes.com/recipes/16376/healthy-recipes/lunches/'
-#     a = urllib.request.urlopen(s)
-#     a = a.readlines()
-#     urls = []
-
-#     for i in a:
-#         if str(i).find('https://www.allrecipes.com/recipe/')>=0:
-#             url = str(i)[str(i).find('https://www.allrecipes.com/recipe/'):]
-#             urls.append(url[:url.find('"')])
-
-#     for num in nums:
-#         print(urls[num])
-#         # print(json.dumps(get_directions(urls[num]), indent=4, sort_keys=True))
-#         # print(num)
-#         # print(get_ingredients_withURL(urls[num]))
-#         # print("\n\n\n")
-#         break
-
-
-# test(list(range(0, 10)))
-# test_url = "https://www.allrecipes.com/recipe/99873/apple-curry-turkey-pita/"
-
 def to_veg():
+
     # Assume that you already called get_directions() which saved our representation as a file
     # A file with name "recipe_representation" is already in the current directory
-
 
     f = open('recipe_representation.json')
     rep = json.load(f)
 
-    meat_sub = {"turkey": "tofu", "chicken":"tofu"}
+    meat_sub = {"turkey": "tofu", "chicken":"tofu",
+                "pork": "tempeh", "beef": "seitan",
+                "duck": "black beans",
+                "lamb": "oat flakes",
+                "ham": "lentils",
+                "sausage": "green spelt"}
     recipe_transformation = {}
 
     # Ingredients:  Meat to Vegetables
@@ -52,7 +33,7 @@ def to_veg():
 
 
     # Save new recipe as a file
-    with open('recipe_veg.json', 'w') as fp:
+    with open('recipe_representation.json', 'w') as fp:
         json.dump(recipe_transformation, fp, sort_keys=True, indent=4)
 
 def get_transformed_ingredients(ingredients, meat_sub):
@@ -84,12 +65,13 @@ def get_transformed_directions(directions, meat_sub):
             if is_meat(old_ingredient, meat_sub):
                 new_ingredients.append(get_meat_sub(old_ingredient, meat_sub))
                 new_action = get_new_veg_action(old_ingredient, old_action, meat_sub)
+                break
 
             else:
                 new_ingredients.append(old_ingredient)
                 new_action = old_action
 
-            transformed_directions.append({"ingredients":new_ingredients, "tool": direction["tools"], "methods":direction["methods"], "time":direction["time"], "action": new_action})
+        transformed_directions.append({"ingredients":new_ingredients, "tool": direction["tools"], "methods":direction["methods"], "time":direction["time"], "action": new_action})
 
 
     return transformed_directions
@@ -108,10 +90,10 @@ def get_meat_sub(name, meat_sub):
 
 def get_new_veg_action(old_ingredient, old_action, meat_sub):
     if old_ingredient in old_action:
-        print("replace: ", old_ingredient, " ", get_meat_sub(old_ingredient, meat_sub))
+        print("replace: ", old_ingredient, " with ", get_meat_sub(old_ingredient, meat_sub))
         return old_action.replace(old_ingredient, get_meat_sub(old_ingredient, meat_sub))
     else:
-        print("replace: ", old_ingredient, " ", replace_meat(old_ingredient, old_action, meat_sub))
+        print("replace: ", old_ingredient, " with ", replace_meat(old_ingredient, old_action, meat_sub))
         return replace_meat(old_ingredient, old_action, meat_sub)
 
 def replace_meat(old_ingredient, old_action, meat_sub):
@@ -120,9 +102,6 @@ def replace_meat(old_ingredient, old_action, meat_sub):
             return "add " + meat_sub[token]
             # return old_ingredient.replace(token, meat_sub[token])
 
+if __name__ == '__main__':
+    to_veg()
 to_veg()
-
-
-
-# for ingredient in ingredients:
-#     print(ingredient["ingredient_name"])
