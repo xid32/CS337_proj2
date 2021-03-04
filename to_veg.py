@@ -94,7 +94,8 @@ def get_new_veg_action(old_ingredient, old_action, meat_sub):
 def replace_meat(old_ingredient, old_action, meat_sub):
     for token in word_tokenize(old_ingredient):
         if token in meat_sub:
-            return "add " + meat_sub[token]
+            return old_action.replace(token, meat_sub[token])
+            # return "add " + meat_sub[token]
             # return old_ingredient.replace(token, meat_sub[token])
 
 if __name__ == '__main__':
