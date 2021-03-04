@@ -2,6 +2,8 @@ from get_tools import TOOLS
 from fetchURL import fetchURL
 from parse import findDirection
 from get_methods import get_method
+from get_ingredients import get_ingredients_withURL
+from nltk import word_tokenize
 import re
 import json
 import urllib.request
@@ -26,6 +28,7 @@ def get_directions(url):
             dir_rep["tools"] = find_tools(sent)
             dir_rep["methods"] = find_methods(sent, methods)
             dir_rep["time"] = find_time(sent)
+            dir_rep["ingredients"] = find_ingredients(url, sent)
             dirs_rep.append(dir_rep)
     return dirs_rep
     
@@ -44,6 +47,18 @@ def find_tools(text):
             tools_for_this_step.append(TOOL)
     return tools_for_this_step
 
+def find_ingredients(url, sent):
+    ingredient_for_this_step = []
+    for ingredient in get_ingredients_withURL(url):
+        name = ingredient["ingredient_name"]
+        if is_in(word_tokenize(name), sent):
+            ingredient_for_this_step.append(name)
+    return ingredient_for_this_step
+
+def is_in(tokens, sent):
+    for token in tokens:
+        if token in sent: return True
+    return False
 
 # TODO: Remove Overlap time
 def find_time(text):
@@ -117,6 +132,12 @@ def test(nums):
 
     for num in nums:
         print(json.dumps(get_directions(urls[num]), indent=4, sort_keys=True))
+        # print(num)
+        # print(get_ingredients_withURL(urls[num]))
+        # print("\n\n\n")
+        break
 
 
 test(list(range(0, 10)))
+
+
