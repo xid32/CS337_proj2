@@ -24,12 +24,16 @@ def get_directions(url):
         for sent in sents:
             if sent == "\n": continue
             dir_rep = {}
-            dir_rep["txt"] = sent
+            dir_rep["action"] = sent
             dir_rep["tools"] = find_tools(sent)
             dir_rep["methods"] = find_methods(sent, methods)
             dir_rep["time"] = find_time(sent)
             dir_rep["ingredients"] = find_ingredients(ingredients, sent)
             dirs_rep.append(dir_rep)
+
+    representation = {"ingredients": ingredients, "methods": methods, "tools":TOOLS, "directions:": dirs_rep}
+    with open('recipe_representation.json', 'w') as fp:
+        json.dump(representation, fp, sort_keys=True, indent=4)
     return dirs_rep
     
 def find_methods(text, methods):
