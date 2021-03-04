@@ -23,7 +23,7 @@ def to_veg():
     recipe_transformation = {}
 
     # Ingredients:  Meat to Vegetables
-    recipe_transformation["ingradient"] = get_transformed_ingredients(rep["ingredients"], meat_sub)
+    recipe_transformation["ingredients"] = get_transformed_ingredients(rep["ingredients"], meat_sub)
 
     # Directions: Meat to Vegetables
     # print(rep["directions"])
@@ -71,7 +71,7 @@ def get_transformed_directions(directions, meat_sub):
                 new_ingredients.append(old_ingredient)
                 new_action = old_action
 
-        transformed_directions.append({"ingredients":new_ingredients, "tool": direction["tools"], "methods":direction["methods"], "time":direction["time"], "action": new_action})
+        transformed_directions.append({"ingredients":new_ingredients, "tools": direction["tools"], "methods":direction["methods"], "time":direction["time"], "action": new_action})
 
 
     return transformed_directions
