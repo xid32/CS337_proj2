@@ -40,11 +40,11 @@ def get_method():
             if i.find(j)>=0 and j not in om:
                 om.append(j)
 
-    print('Primary Methods:')
-    print(pm)
-    print('Other Methods:')
-    print(om)
-    print()
+    # print('Primary Methods:')
+    # print(pm)
+    # print('Other Methods:')
+    # print(om)
+    # print()
     return [pm, om]
 
 def test():

@@ -66,7 +66,7 @@ def get_tools(st):
     return list(set(tools))
 
 
-fetchURL('https://www.allrecipes.com/recipe/270363/guinness-cupcakes-with-espresso-frosting/')
+# fetchURL('https://www.allrecipes.com/recipe/270363/guinness-cupcakes-with-espresso-frosting/')
 f = open("url.txt", "r")
 s = f.read()
 

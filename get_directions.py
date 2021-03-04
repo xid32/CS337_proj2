@@ -16,7 +16,7 @@ def get_directions(url):
     s = f.read()
     dirs = findDirection(s)["recipeInstructions"]
     methods = get_method()[0] + get_method()[1]
-    print(methods)
+    ingredients = get_ingredients_withURL(url)
     dirs_rep = []
     for dir in dirs:
         text = dir["text"]
@@ -28,7 +28,7 @@ def get_directions(url):
             dir_rep["tools"] = find_tools(sent)
             dir_rep["methods"] = find_methods(sent, methods)
             dir_rep["time"] = find_time(sent)
-            dir_rep["ingredients"] = find_ingredients(url, sent)
+            dir_rep["ingredients"] = find_ingredients(ingredients, sent)
             dirs_rep.append(dir_rep)
     return dirs_rep
     
@@ -47,9 +47,9 @@ def find_tools(text):
             tools_for_this_step.append(TOOL)
     return tools_for_this_step
 
-def find_ingredients(url, sent):
+def find_ingredients(ingredients, sent):
     ingredient_for_this_step = []
-    for ingredient in get_ingredients_withURL(url):
+    for ingredient in ingredients:
         name = ingredient["ingredient_name"]
         if is_in(word_tokenize(name), sent):
             ingredient_for_this_step.append(name)
