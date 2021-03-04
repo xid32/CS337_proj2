@@ -20,7 +20,6 @@ def amount_transformation(recipe_link):
         quantity_double = quantity_num * 2
         ingradient_double[i]['quantity'] = str(quantity_double)
 
-
         # half
         if len(ingradient_list[i]['measurement']) != 0:
             quantity_half = quantity_num / 2
