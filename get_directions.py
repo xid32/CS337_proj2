@@ -31,7 +31,7 @@ def get_directions(url):
             dir_rep["ingredients"] = find_ingredients(ingredients, sent)
             dirs_rep.append(dir_rep)
 
-    representation = {"ingredients": ingredients, "methods": methods, "tools":TOOLS, "directions:": dirs_rep}
+    representation = {"ingredients": ingredients, "methods": methods, "tools":TOOLS, "directions": dirs_rep}
     with open('recipe_representation.json', 'w') as fp:
         json.dump(representation, fp, sort_keys=True, indent=4)
     return dirs_rep
@@ -115,6 +115,9 @@ def is_overlap(start, interval):
         if tup[0] <= start + 1 and start + 1 <= tup[1]: return True
     return False
 
+test_url = "https://www.allrecipes.com/recipe/166101/apricot-chicken-with-balsamic-vinegar/"
+get_directions(test_url)
+
 # print(json.dumps(get_directions(url), indent=4, sort_keys=True))
 # print(find_time("heat for 5 hour and 15 minute, boil for 5 minute, wait 5 minute to cool"))
 
@@ -123,25 +126,25 @@ def is_overlap(start, interval):
 # for key in dicti:
 #     print(dir[key:key+16])
 
-def test(nums):
-    s = 'https://www.allrecipes.com/recipes/16376/healthy-recipes/lunches/'
-    a = urllib.request.urlopen(s)
-    a = a.readlines()
-    urls = []
+# def test(nums):
+#     s = 'https://www.allrecipes.com/recipes/16376/healthy-recipes/lunches/'
+#     a = urllib.request.urlopen(s)
+#     a = a.readlines()
+#     urls = []
 
-    for i in a:
-        if str(i).find('https://www.allrecipes.com/recipe/')>=0:
-            url = str(i)[str(i).find('https://www.allrecipes.com/recipe/'):]
-            urls.append(url[:url.find('"')])
+#     for i in a:
+#         if str(i).find('https://www.allrecipes.com/recipe/')>=0:
+#             url = str(i)[str(i).find('https://www.allrecipes.com/recipe/'):]
+#             urls.append(url[:url.find('"')])
 
-    for num in nums:
-        print(json.dumps(get_directions(urls[num]), indent=4, sort_keys=True))
-        # print(num)
-        # print(get_ingredients_withURL(urls[num]))
-        # print("\n\n\n")
-        break
+#     for num in nums:
+#         print(json.dumps(get_directions(urls[num]), indent=4, sort_keys=True))
+#         # print(num)
+#         # print(get_ingredients_withURL(urls[num]))
+#         # print("\n\n\n")
+#         break
 
 
-test(list(range(0, 10)))
+# test(list(range(0, 10)))
 
 

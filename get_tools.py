@@ -71,5 +71,5 @@ def get_tools():
                             break
     return list(set(tools))
 
-
+fetchURL("https://www.allrecipes.com/recipe/166101/apricot-chicken-with-balsamic-vinegar/")
 TOOLS = get_tools()
