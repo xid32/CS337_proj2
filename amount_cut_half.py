@@ -30,15 +30,15 @@ def amount_cut_half():
 
     print('All ingredients cut by half! Methods, tools and directions remains the same.')
 
-    recipe_double = {}
-    recipe_double['directions'] = rep['directions']
-    recipe_double['ingredients'] = ingradient_half
-    recipe_double['methods'] = rep['methods']
-    recipe_double['tools'] = rep['tools']
+    recipe_half = {}
+    recipe_half['directions'] = rep['directions']
+    recipe_half['ingredients'] = ingradient_half
+    recipe_half['methods'] = rep['methods']
+    recipe_half['tools'] = rep['tools']
 
     # Save new recipe as a file
     with open('recipe_representation.json', 'w') as fp:
-        json.dump(recipe_double, fp, sort_keys=True, indent=4)
+        json.dump(recipe_half, fp, sort_keys=True, indent=4)
 
 if __name__ == '__main__':
     amount_cut_half()
