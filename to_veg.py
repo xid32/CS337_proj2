@@ -1,5 +1,9 @@
 from nltk import word_tokenize
 import json
+from unidecode import unidecode
+from fractions import Fraction
+import copy
+
 
 def to_veg():
 
@@ -104,4 +108,4 @@ def replace_meat(old_ingredient, old_action, meat_sub):
 
 if __name__ == '__main__':
     to_veg()
-to_veg()
+    
