@@ -43,3 +43,8 @@
 ```sh
   python3 amount_cut_half.py
 ```
+
+### Change the recipe's style to Thai
+```sh
+  python3 to_style.py
+```
