@@ -24,6 +24,10 @@ def to_veg():
     # print(rep["directions"])
     recipe_transformation["directions"] = get_transformed_directions(rep["directions"], meat_sub)
 
+    # Tools and Methods remain the same
+    recipe_transformation["tools"] = rep["tools"]
+    recipe_transformation["methods"] = rep["methods"]
+
 
 
 
