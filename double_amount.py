@@ -28,6 +28,7 @@ def double_amount():
     print('All ingredients doubled! Methods, tools and directions remains the same.')
 
     recipe_double = {}
+    recipe_double['name'] = rep['name']
     recipe_double['directions'] = rep['directions']
     recipe_double['ingredients'] = ingradient_double
     recipe_double['methods'] = rep['methods']
