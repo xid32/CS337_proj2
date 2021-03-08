@@ -3,7 +3,7 @@ from fractions import Fraction
 from nltk import word_tokenize
 import copy
 import json
-from to_healthy import to_healthy
+from to_veg import to_veg
 
 
 # Reduce unhealthy ingredient by 50%
@@ -54,6 +54,7 @@ def is_unhealthy(name):
     return False
 
 if __name__ == '__main__':
+    print("Will try to replace some meat with vegetables and reduce the amount unhealthy ingredient")
     to_healthy()
     # Add some vegetables
     to_veg()

@@ -52,6 +52,7 @@ def is_unhealthy(name):
     return False
 
 if __name__ == '__main__':
+    print("Will try to replace some healthy ingredients with unhealthy ones and increase the amount of unhealthy ingredients")
     to_unhealthy()
     # Add more meat
     to_meat()
