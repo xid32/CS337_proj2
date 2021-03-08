@@ -52,7 +52,7 @@ def get_transformed_ingredients(ingredients, meat_sub):
             transformed_ingredient["ingredient_name"] = get_meat_sub(name, meat_sub)
             transformed_ingredient["measurement"] = ""
             transformed_ingredient["preparation"] = ""
-            transformed_ingredient["quantity"] = ""
+            transformed_ingredient["quantity"] = "adjustable amount of your choice"
             transformed_ingredients.append(transformed_ingredient)
         else:
             transformed_ingredients.append(ingredient)
