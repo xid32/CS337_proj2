@@ -24,6 +24,8 @@ def to_meat():
         veg_to_meat[meat] = random.choice(meat_list)
 
     recipe_transformation = {}
+    
+    recipe_transformation["name"] = rep["name"]
 
     # Ingredients: Vegetables to Meat
     recipe_transformation["ingredients"] = get_transformed_ingredients(rep["ingredients"], veg_to_meat)
