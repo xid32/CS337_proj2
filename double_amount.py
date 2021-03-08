@@ -13,6 +13,9 @@ def double_amount():
     ingradient_double = copy.deepcopy(ingradient_list)
 
     for i in range(len(ingradient_list)):
+        if ingradient_list[i]['quantity'] == "adjustable amount of your choice":
+            ingradient_double[i]['quantity'] = "adjustable amount of your choice"
+            continue
         get_quantity = unidecode(ingradient_list[i]['quantity']).split()
         if len(get_quantity) > 0:
             if len(get_quantity) == 1:

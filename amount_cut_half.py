@@ -13,7 +13,12 @@ def amount_cut_half():
     ingradient_half = copy.deepcopy(ingradient_list)
 
     for i in range(len(ingradient_list)):
+        if ingradient_list[i]['quantity'] == "adjustable amount of your choice":
+            ingradient_half[i]['quantity'] = "adjustable amount of your choice"
+            continue
+
         get_quantity = unidecode(ingradient_list[i]['quantity']).split()
+        print(get_quantity)
         if len(get_quantity) > 0:
             if len(get_quantity) == 1:
                 quantity_num = float(Fraction(get_quantity[0]))
