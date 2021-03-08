@@ -73,3 +73,22 @@ def get_tools():
 
 fetchURL("https://www.allrecipes.com/recipe/166101/apricot-chicken-with-balsamic-vinegar/")
 TOOLS = get_tools()
+
+def get_tools_wrapper():
+    return get_tools()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

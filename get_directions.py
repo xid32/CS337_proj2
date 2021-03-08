@@ -1,4 +1,4 @@
-from get_tools import TOOLS
+from get_tools import TOOLS, get_tools_wrapper
 from fetchURL import fetchURL
 from parse import findDirection
 from get_methods import get_method
@@ -16,6 +16,7 @@ def get_directions(url):
     fetchURL(url)
     f = open("url.txt", "r")
     s = f.read()
+    TOOLS = get_tools_wrapper()
     dirs = findDirection(s)["recipeInstructions"]
     methods = get_method()[0] + get_method()[1]
     ingredients = get_ingredients_withURL(url)
@@ -47,6 +48,7 @@ def find_methods(text, methods):
 
 
 def find_tools(text):
+    TOOLS = get_tools_wrapper()
     tools_for_this_step = []
     for TOOL in TOOLS:
         if TOOL in text:
