@@ -71,15 +71,20 @@ def get_transformed_directions(directions, meat_sub):
         old_action = direction["action"]
         new_action = ""
         # Ingredient field
-        for old_ingredient in old_ingredients:
-            if is_meat(old_ingredient, meat_sub):
-                new_ingredients.append(get_meat_sub(old_ingredient, meat_sub))
-                new_action = get_new_veg_action(old_ingredient, old_action, meat_sub)
-                break
 
-            else:
-                new_ingredients.append(old_ingredient)
-                new_action = old_action
+        if old_ingredients:
+            for old_ingredient in old_ingredients:
+                if is_meat(old_ingredient, meat_sub):
+                    new_ingredients.append(get_meat_sub(old_ingredient, meat_sub))
+                    new_action = get_new_veg_action(old_ingredient, old_action, meat_sub)
+                    break
+
+                else:
+                    new_ingredients.append(old_ingredient)
+                    new_action = old_action
+        else:
+            new_ingredients = []
+            new_action = old_action
 
         transformed_directions.append({"ingredients":new_ingredients, "tools": direction["tools"], "methods":direction["methods"], "time":direction["time"], "action": new_action})
 
@@ -110,7 +115,11 @@ def get_new_veg_action(old_ingredient, old_action, meat_sub):
 def replace_meat(old_ingredient, old_action, meat_sub):
     for token in word_tokenize(old_ingredient):
         if token in meat_sub:
-            return old_action.replace(token, meat_sub[token])
+            if token in old_action:
+                return old_action.replace(token, meat_sub[token])
+            # return "add " + meat_sub[token]
+            # return old_ingredient.replace(token, meat_sub[token])
+    return old_action
 
 if __name__ == '__main__':
     to_meat()

@@ -3,6 +3,7 @@ from fractions import Fraction
 from nltk import word_tokenize
 import copy
 import json
+from to_healthy import to_healthy
 
 
 # Reduce unhealthy ingredient by 50%
@@ -43,6 +44,8 @@ def to_healthy():
     with open('recipe_representation.json', 'w') as fp:
         json.dump(recipe_half, fp, sort_keys=True, indent=4)
 
+
+
 def is_unhealthy(name):
     unhealthy = ["salt", "oil", "sugar"]
     for token in word_tokenize(name):
@@ -52,4 +55,6 @@ def is_unhealthy(name):
 
 if __name__ == '__main__':
     to_healthy()
+    # Add some vegetables
+    to_veg()
     print("Healthified!")

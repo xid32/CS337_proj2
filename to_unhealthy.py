@@ -1,6 +1,7 @@
 from unidecode import unidecode
 from fractions import Fraction
 from nltk import word_tokenize
+from to_meat import to_meat
 import copy
 import json
 
@@ -52,4 +53,6 @@ def is_unhealthy(name):
 
 if __name__ == '__main__':
     to_unhealthy()
+    # Add more meat
+    to_meat()
     print("Junkified!")
