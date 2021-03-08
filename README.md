@@ -7,6 +7,9 @@
 * ```sh
   source virtualenv/bin/activate
   
+ * ```sh
+  pip install -r requirements.txt
+  
 ## Run
 
 ### Get a recipe that you want to transform
