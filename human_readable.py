@@ -8,9 +8,12 @@ def main():
     for i in recipe['ingredients']:
         print(' - '+i['quantity']+' '+i['preparation'] +' ' +i['measurement']+' ' +i['ingredient_name'])
     print('Direction')
+
+    j = 0
     for i in range(len(recipe['directions'])):
         if recipe['directions'][i]['action']:
-            print(str(i+1) + '. ' + recipe['directions'][i]['action'])
+            print(str(j+1) + '. ' + recipe['directions'][i]['action'])
+            j += 1
 
 
 if __name__ == '__main__':

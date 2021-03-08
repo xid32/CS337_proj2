@@ -24,10 +24,12 @@ def to_veg():
     recipe_transformation["name"] = rep["name"]
 
     # Ingredients:  Meat to Vegetables
+    print("Transforming Ingredients: ")
     recipe_transformation["ingredients"] = get_transformed_ingredients(rep["ingredients"], meat_sub)
 
     # Directions: Meat to Vegetables
     # print(rep["directions"])
+    print("Transforming Directions: ")
     recipe_transformation["directions"] = get_transformed_directions(rep["directions"], meat_sub)
 
     # Tools and Methods remain the same
@@ -91,14 +93,15 @@ def is_meat(name, meat_sub):
 def get_meat_sub(name, meat_sub):
     for token in word_tokenize(name):
         if token in meat_sub:
+            print("Replaced ", name, " with: ", meat_sub[token])
             return meat_sub[token]
 
 def get_new_veg_action(old_ingredient, old_action, meat_sub):
     if old_ingredient in old_action:
-        print("replace: ", old_ingredient, " with ", get_meat_sub(old_ingredient, meat_sub))
+        # print("replace: ", old_ingredient, " with ", get_meat_sub(old_ingredient, meat_sub))
         return old_action.replace(old_ingredient, get_meat_sub(old_ingredient, meat_sub))
     else:
-        print("replace: ", old_ingredient, " with ", replace_meat(old_ingredient, old_action, meat_sub))
+        # print("replace: ", old_ingredient, " with ", replace_meat(old_ingredient, old_action, meat_sub))
         return replace_meat(old_ingredient, old_action, meat_sub)
 
 def replace_meat(old_ingredient, old_action, meat_sub):
