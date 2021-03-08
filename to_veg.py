@@ -20,6 +20,8 @@ def to_veg():
                 "ham": "lentils",
                 "sausage": "green spelt"}
     recipe_transformation = {}
+    
+    recipe_transformation["name"] = rep["name"]
 
     # Ingredients:  Meat to Vegetables
     recipe_transformation["ingredients"] = get_transformed_ingredients(rep["ingredients"], meat_sub)
