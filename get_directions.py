@@ -11,6 +11,8 @@ import urllib.request
 
 url = 'https://www.allrecipes.com/recipe/270363/guinness-cupcakes-with-espresso-frosting/'
 def get_directions(url):
+    parse = url.split('/')
+    name = parse[-2]
     fetchURL(url)
     f = open("url.txt", "r")
     s = f.read()
@@ -31,7 +33,7 @@ def get_directions(url):
             dir_rep["ingredients"] = find_ingredients(ingredients, sent)
             dirs_rep.append(dir_rep)
 
-    representation = {"ingredients": ingredients, "methods": methods, "tools":TOOLS, "directions": dirs_rep}
+    representation = {"name":name,"ingredients": ingredients, "methods": methods, "tools":TOOLS, "directions": dirs_rep}
     with open('recipe_representation.json', 'w') as fp:
         json.dump(representation, fp, sort_keys=True, indent=4)
     return dirs_rep
