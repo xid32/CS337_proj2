@@ -31,6 +31,7 @@ def amount_cut_half():
     print('All ingredients cut by half! Methods, tools and directions remains the same.')
 
     recipe_half = {}
+    recipe_half['name'] = rep['name']
     recipe_half['directions'] = rep['directions']
     recipe_half['ingredients'] = ingradient_half
     recipe_half['methods'] = rep['methods']
