@@ -33,6 +33,7 @@ def to_healthy():
             print(ingradient_list[i]['ingredient_name'] + ' cut by half, from ' + str(quantity_num) + ' to ' + str(quantity_half))
 
     recipe_half = {}
+    recipe_half['name'] = rep['name']
     recipe_half['directions'] = rep['directions']
     recipe_half['ingredients'] = ingradient_half
     recipe_half['methods'] = rep['methods']
