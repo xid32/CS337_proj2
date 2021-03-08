@@ -48,3 +48,7 @@
 ```sh
   python3 to_style.py
 ```
+### Display human-readable format
+```sh
+  python3 human_readable.py
+```
