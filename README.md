@@ -7,7 +7,7 @@
 * ```sh
   source virtualenv/bin/activate
   
- * ```sh
+* ```sh
   pip install -r requirements.txt
   
 ## Run
