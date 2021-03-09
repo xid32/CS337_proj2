@@ -14,44 +14,48 @@
 
 ### Get a recipe that you want to transform
 ```sh
-  python3 get_recipes.py url
+  python3 get_recipes.py [url]
 ```  
   
-### Transform the recipe to vegetarian
+### Transform the current recipe to vegetarian
 ```sh
   python3 to_veg.py
 ```
 
-### Transform the recipe to meaty recipe
+### Transform the current recipe to meaty recipe
 ```sh
   python3 to_meat.py
 ```
 
-### Transform the recipe to healthy recipe
+### Transform the current recipe to a healthy recipe
 ```sh
   python3 to_healthy.py
 ```
 
-### Transform the recipe to unhealthy recipe
+### Transform the current recipe to an unhealthy recipe
 ```sh
   python3 to_unhealhy.py
 ```
 
-### Double the amount
+### Double the amount of the current recipe
 ```sh
   python3 double_amount.py
 ```
 
-### reduce the amount by half
+### reduce the amount by half of the current recipe
 ```sh
   python3 amount_cut_half.py
 ```
 
-### Change the recipe's style to Thai
+### Change the current recipe's style to Thai
 ```sh
   python3 to_style.py
 ```
-### Display human-readable format
+### Display human-readable format of the current recipe
 ```sh
   python3 human_readable.py
 ```
+
+## Note:
+* The transformation is sequential. For example, if you run get_recipes.py, then to_veg.py then double_amount.py, the original recipe becomes vegtarian **and** with doubled amount 
+* If you want the recipe only transformed once and see the result, you can run get_recipes.py again to start over.
