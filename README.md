@@ -57,5 +57,5 @@
 ```
 
 ## Note:
-* The transformation is sequential. For example, if you run get_recipes.py, then to_veg.py then double_amount.py, the original recipe becomes vegtarian **and** with doubled amount 
+* The transformation is sequential. For example, if you run get_recipes.py, then to_veg.py then double_amount.py, the original recipe becomes vegetarian **and** with doubled amount 
 * If you want the recipe only transformed once and see the result, you can run get_recipes.py again to start over.
