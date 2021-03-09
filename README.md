@@ -1,5 +1,8 @@
 # CS337_proj2
 
+## Repository link:
+* https://github.com/xid32/CS337_proj2
+
 ## Setup
 * ```sh
   python3 -m venv virtualenv
