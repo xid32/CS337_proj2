@@ -37,7 +37,7 @@
 
 ### Transform the current recipe to an unhealthy recipe
 ```sh
-  python3 to_unhealhy.py
+  python3 to_unhealthy.py
 ```
 
 ### Double the amount of the current recipe
