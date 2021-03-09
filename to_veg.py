@@ -2,6 +2,7 @@ from nltk import word_tokenize
 import json
 from unidecode import unidecode
 from fractions import Fraction
+import random
 import copy
 
 
@@ -13,13 +14,18 @@ def to_veg():
     f = open('recipe_representation.json')
     rep = json.load(f)
 
-    meat_sub = {"turkey": "tofu", "chicken":"tofu",
-                "pork": "tempeh", "beef": "seitan",
-                "brisket": "seitan",
-                "duck": "black beans",
-                "lamb": "oat flakes",
-                "ham": "lentils",
-                "sausage": "green spelt"}
+    meats = ["turkey", "chicken", "pork", "beef", "brisket", "duck", "lamb", "ham", "sausage",
+            "fish", "shrimp", "seafood", "salmon", "venison", "rabbit", "goat", "poultry", "goose", "meat",
+            "bacon", ""]
+
+    veg_list = ["tempeh", "tofu", "seitan", "black beans", "oat flakes", "lentils",
+                "green seplt"]
+    meat_sub = {}
+
+
+    for meat in meats:
+        meat_sub[meat] = random.choice(veg_list)
+
     recipe_transformation = {}
     
     recipe_transformation["name"] = rep["name"]
