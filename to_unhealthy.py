@@ -31,7 +31,7 @@ def to_unhealthy():
 
             print(ingradient_list[i]['ingredient_name'] + ' doubled, from ' + str(quantity_num) + ' to ' + str(quantity_double))
 
-    print('All ingredients doubled! Methods, tools and directions remains the same.')
+    # print('All ingredients doubled! Methods, tools and directions remains the same.')
 
     recipe_double = {}
     recipe_double['name'] = rep['name']
